@@ -1,4 +1,4 @@
 const CommonVariables = {
-    API_URL: 'http://13.51.238.177/api/'   
+    API_URL: 'https://movihome.xyz/api/'   
 }
 export {CommonVariables}
