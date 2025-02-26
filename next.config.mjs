@@ -10,4 +10,4 @@ const nextConfig = {
     buildActivity: false
   },
 };
-export default nextConfigfig
+export default nextConfig
