@@ -10,6 +10,11 @@ countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 import { useState, useEffect } from 'react';
 import secureLocalStorage from 'react-secure-storage';
 import Head from 'next/head';
+import https from "https";
+
+const agent = new https.Agent({  
+  rejectUnauthorized: false,  // ⚠️ Ignore SSL errors (not recommended for production)
+});
 
 const mapLocationToCountryCode = (locationName) => {
     const countryCodes = {
@@ -347,7 +352,9 @@ const Locations = ({ countryData }) => {
 }
 export async function getStaticProps() {
 
-    const countryres = await axios.get(`${CommonVariables.API_URL}event/event_location?event_type=1`);
+    const countryres = await axios.get(`${CommonVariables.API_URL}event/event_location?event_type=1`, {
+        httpsAgent: agent,  // Use the agent here
+      });
     const countryData = countryres.data.status_code == 1 ? countryres.data : [];
     // console.log("countryData", countryData);
 
